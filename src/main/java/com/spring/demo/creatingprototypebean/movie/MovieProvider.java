@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 
@@ -12,13 +11,13 @@ import org.springframework.stereotype.Service;
 public class MovieProvider {
     
     @Autowired
-    private ApplicationContext appCtx;
+    private MovieFactory movieFactory;
     
     public List<Movie> getMovies() {
         List<Movie> movies = new ArrayList<>();
-        Movie m = this.appCtx.getBean(Movie.class, "Infinity War");
+        Movie m = this.movieFactory.create("Infinity War");
         movies.add(m);
-        Movie m2 = this.appCtx.getBean(Movie.class, "End Game");
+        Movie m2 = this.movieFactory.create("End Game");
         movies.add(m2);
         return movies;
     }
